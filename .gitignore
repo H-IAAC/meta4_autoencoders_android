@@ -6,8 +6,8 @@
 **/gen/
 .gradle/
 
-**Experiments/digits/pytorch/android_pytorch/app/build/
-
+Experiments/digits/pytorch/android_pytorch/app/build/
+Experiments/digits/tensorflow/android_tensorflow/app/build/
 local.properties
 **/proguard/
 *.log
