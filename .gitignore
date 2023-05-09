@@ -5,10 +5,9 @@
 **/bin/
 **/gen/
 .gradle/
-tensorflow/android_tensorflow/app/build/
-pytorch/android_pytorch/app/build/
-Experiments/digits/pytorch/android_pytorch/.gradle/
-Experiments/digits/tensorflow/android_tensorflow/.gradle/
+
+**Experiments/digits/pytorch/android_pytorch/app/build/
+
 local.properties
 **/proguard/
 *.log
