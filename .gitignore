@@ -1,0 +1,14 @@
+*.apk
+*.ap_
+*.dex
+*.class
+**/bin/
+**/gen/
+.gradle/
+tensorflow/android_tensorflow/app/build/
+pytorch/android_pytorch/app/build/
+Experiments/digits/pytorch/android_pytorch/.gradle/
+Experiments/digits/tensorflow/android_tensorflow/.gradle/
+local.properties
+**/proguard/
+*.log
