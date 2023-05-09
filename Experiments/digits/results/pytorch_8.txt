@@ -1,0 +1,16 @@
+2023-05-09 15:48:29.930 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //1886771 //4992 // 3
+2023-05-09 15:48:31.662 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //4830157 //4560 // 7
+2023-05-09 15:48:33.919 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //2439322 //4592 // 2
+2023-05-09 15:48:35.297 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //1743177 //4880 // 2
+2023-05-09 15:48:36.537 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //3841561 //4480 // 5
+2023-05-09 15:48:38.024 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //4714999 //4128 // 9
+2023-05-09 15:48:39.775 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //3613435 //4560 // 4
+2023-05-09 15:48:41.786 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //2756247 //4992 // 4
+2023-05-09 15:48:43.063 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //6123490 //5328 // 7
+2023-05-09 15:48:44.409 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //1593282 //4912 // 2
+2023-05-09 15:48:46.017 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //2841719 //4560 // 4
+2023-05-09 15:48:50.463 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //5005417 //4560 // 6
+2023-05-09 15:48:51.873 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //2412397 //3312 // 2
+2023-05-09 15:48:53.152 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //3940261 //5440 // 5
+2023-05-09 15:48:54.666 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //5267239 //4560 // 8
+2023-05-09 15:48:56.414 28984-28984/org.tensorflow.lite.codelabs.digitclassifier D/Medição: //4307657 //4560 // 5

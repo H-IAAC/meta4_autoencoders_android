@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private var encoder = Encoder(this)
     private var decoder = Decoder(this)
     private var latentDimstextview: TextView? = null
-    private val laten_dim = 8
+    private val laten_dim = 32
 
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         clearButton?.setOnClickListener {
             drawView?.clearCanvas()
             predictedTextView?.text = getString(R.string.prediction_text_placeholder)
+            imageView?.setImageResource(0)
         }
 
         // Setup classification trigger so that it classify after every stroke drew.
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             // As we have interrupted DrawView's touch event,
             // we first need to pass touch events through to the instance for the drawing to show up.
             drawView?.onTouchEvent(event)
-            imageView?.setImageResource(0)
+
             // Then if user finished a touch event, run classification
             if (event.action == MotionEvent.ACTION_UP) {
                 classifyDrawing()
@@ -108,9 +109,9 @@ class MainActivity : AppCompatActivity() {
             val spaceLatent = encoder.encoder(inputTensor)
             val dec = spaceLatent?.let { decoder.decoder(it) }
 
-            val elapsedTime = System.currentTimeMillis()  - startTime // tempo decorrido em milissegundos
+            val elapsedTime = (System.currentTimeMillis()  - startTime) // tempo decorrido em milissegundos
             val cpuTime = Debug.threadCpuTimeNanos() - startTimeCpu // Tempo total de CPU utilizado
-            val memoryConsumed = Debug.getNativeHeapAllocatedSize() - memoryBefore //   consumo de memória durante a inferência
+            val memoryConsumed = (Debug.getNativeHeapAllocatedSize()  - memoryBefore) //   consumo de memória durante a inferência
 
             // Exibição dos resultados
             //Log.d("Medição", "CPU:$cpuTime nanossegundos / memória:$memoryConsumed KB /Tempo: $elapsedTime ms")

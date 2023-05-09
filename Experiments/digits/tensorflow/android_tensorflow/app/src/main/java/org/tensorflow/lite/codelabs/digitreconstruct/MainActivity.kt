@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var decoder = Decoder(this)
     private var imageView: ImageView? = null
     private var latent_dimsTextView: TextView? = null
-    val laten_dim = 16
+    val laten_dim = 32
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,24 +140,26 @@ class MainActivity : AppCompatActivity() {
         if ((bitmap != null) && (encoder.isInitialized)) {
             val bitmapbuffer=convertBitmapToByteBuffer(bitmap)
 
+            val memoryBefore = Debug.getNativeHeapAllocatedSize()
             val startTimeCpu: Long = Debug.threadCpuTimeNanos() // Captura o tempo inicial
             val startTime = System.currentTimeMillis() //  tempo atual antes da inferência
 
-            val memoryBefore = Debug.getNativeHeapAllocatedSize()
 
             val enc = encoder
                 .encoder(bitmapbuffer,laten_dim)
             val outputdecoder = decoder.decoder(enc,laten_dim)
 
-            val memoryAfter = Debug.getNativeHeapAllocatedSize()
 
-            val memoryConsumed = memoryAfter - memoryBefore //   consumo de memória durante a inferência
+
+
             val elapsedTime = System.currentTimeMillis()  - startTime // tempo decorrido em milissegundos
             val cpuTime = Debug.threadCpuTimeNanos() - startTimeCpu // Tempo total de CPU utilizado
+           val memoryConsumed = Debug.getNativeHeapAllocatedSize() - memoryBefore //   consumo de memória durante a inferência
+
 
             // Exibição dos resultados
             //Log.d("Medição", "CPU:$cpuTime nanossegundos / memória:$memoryConsumed KB /Tempo: $elapsedTime ms")
-            Log.d("Medição", "//$cpuTime //$memoryConsumed // $elapsedTime")
+            Log.d("Medição", "//$cpuTime //$memoryConsumed// $elapsedTime")
 
 
             imageView?.setImageBitmap(createImage(outputdecoder))
