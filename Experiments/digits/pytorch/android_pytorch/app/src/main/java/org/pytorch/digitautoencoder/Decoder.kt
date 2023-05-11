@@ -1,16 +1,3 @@
-/* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-    http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-==============================================================================*/
-
 package org.pytorch.digitautoencoder
 
 import android.content.Context
@@ -31,15 +18,13 @@ import java.util.concurrent.Executors
 class Decoder(private val context: Context) {
     // TODO: Add a TF Lite interpreter as a field.
     // private var interpreter: Interpreter? = null
-    var isInitialized = false
-        private set
+    private var isInitialized = false
+
+
 
     /** Executor to run inference task in the background. */
     private val executorService: ExecutorService = Executors.newCachedThreadPool()
 
-    private var inputImageWidth: Int = 28 // will be inferred from TF Lite model.
-    private var inputImageHeight: Int = 28 // will be inferred from TF Lite model.
-    private var modelInputSize: Int = 28 * 28 // will be inferred from TF Lite model.
 
     fun initialize(laten_dim: Int): Task<Void?> {
         val task = TaskCompletionSource<Void?>()
@@ -59,22 +44,15 @@ class Decoder(private val context: Context) {
     @Throws(IOException::class)
     private fun initializeInterpreter(laten_dim: Int) {
         // loading serialized torchscript module from packaged into app android asset model.pt,
-        // app/src/model/assets/model.pt
 
         try {
-            // creating bitmap from packaged into app android asset 'image.jpg',
-            // app/src/main/assets/image.jpg
-
-            // loading serialized torchscript module from packaged into app android asset model.pt,
-            // app/src/model/assets/model.pt
-            //module 1= LiteModuleLoader.load(assetFilePath(context, "deeplabv3_scripted_optimized.ptl"))
             module = LiteModuleLoader.load(
                 assetFilePath(
                     context,
                     "model_pytorch_decoder_" + laten_dim.toString() + ".ptl"
                 )
             )
-            isInitialized = true;
+            isInitialized = true
         } catch (e: IOException) {
             Log.e("PytorchHelloWorld", "Error reading assets", e)
             // finish()
@@ -103,7 +81,7 @@ class Decoder(private val context: Context) {
     // Generate a tensor of random numbers given the size of that tensor.
     fun generateTensor(vector: FloatArray): Tensor {
 
-        var size = vector.size
+        val size = vector.size
         Log.d("size dec", size.toString())
         //val rand = Random()
         val arr = DoubleArray(size)
@@ -137,7 +115,7 @@ class Decoder(private val context: Context) {
         // getting tensor content as java array of floats
         val floatArray = outputTensor.dataAsFloatArray
 
-        Log.d("result_dec", floatArray.size.toString());
+        Log.d("result_dec", floatArray.size.toString())
 
         // Create empty bitmap in RGBA format (even though it says ARGB but channels are RGBA)
         val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -169,33 +147,8 @@ class Decoder(private val context: Context) {
         return bmp
     }
 
-    /* private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-       val byteBuffer = ByteBuffer.allocateDirect(modelInputSize)
-       byteBuffer.order(ByteOrder.nativeOrder())
-
-       val pixels = IntArray(inputImageWidth * inputImageHeight)
-       bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-       for (pixelValue in pixels) {
-         val r = (pixelValue shr 16 and 0xFF)
-         val g = (pixelValue shr 8 and 0xFF)
-         val b = (pixelValue and 0xFF)
-
-         // Convert RGB to grayscale and normalize pixel value to [0..1].
-         val normalizedPixelValue = (r + g + b) / 3.0f / 255.0f
-         byteBuffer.putFloat(normalizedPixelValue)
-       }
-
-       return byteBuffer
-     }
-   */
-    companion object {
+       companion object {
         private const val TAG = "DigitClassifier"
-
-        private const val FLOAT_TYPE_SIZE = 4
-        private const val PIXEL_SIZE = 1
-
-        private const val OUTPUT_CLASSES_COUNT = 32
     }
 
 
